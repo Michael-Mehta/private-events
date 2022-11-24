@@ -1,0 +1,26 @@
+<% if @user.events.empty? %>
+
+<p>No events have been created yet</p>
+
+<% else %>
+
+<h1> Created Events </h1>
+<% @user.events.each do |event| %>
+  
+<li> <%= link_to event.event_date, event_path(event)%> </li>
+<% end %>
+
+<h1>Future events</h1>
+
+<% @user.attended_events.where('event_date > ?', DateTime.now).each do |event| %>
+    <h3> <%= link_to event.name, event %> </h3>
+<% end %>
+
+<h1>Past events</h1>
+
+<% @user.attended_events.where('event_date < ?', DateTime.now).each do |event| %>
+    <h3> <%= link_to event.name, event %> </h3>
+<% end %>
+
+
+<% end %>

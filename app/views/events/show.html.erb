@@ -1,0 +1,29 @@
+<div>
+
+<div>
+
+<% if user_signed_in? %>
+<h1><%= @event.name %> </h1>
+<p> <%= @event.event_date %> </p>
+<p> <%= @event.location %> </p>
+<p> <%= @event.description %> </p>
+
+<h2>Attendees:<h2>
+<% @event.attendees.each do |attendee| %>
+
+    <p> <%= attendee.username  %> </p>
+
+<% end %>
+
+
+<%= link_to 'Attend', create_attending_path(:attendee_id=>current_user.id, :attended_event_id=>@event.id), 
+ data: { turbo_method: "post" }, class: 'button' %>
+
+<% else %>
+<h1> <%= @event.name %> </h1>
+<p> Please sign in to view the details of this event </p>
+<% end %>
+
+</div>
+
+</div>
