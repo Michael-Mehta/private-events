@@ -16,7 +16,7 @@
 <% end %>
 
 
-<%= link_to 'Attend', create_attending_path(:attendee_id=>current_user.id, :attended_event_id=>@event.id), 
+<%= link_to 'Attend', event_attending_path(:attendee_id=>current_user.id, :attended_event_id=>@event.id), 
  data: { turbo_method: "post" }, class: 'button' %>
 
 <% else %>

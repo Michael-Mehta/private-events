@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   resources :events
   resources :event_attendings
-
+  resources :users, only:[:show]
   get "events/index", to: "events#index"
 end

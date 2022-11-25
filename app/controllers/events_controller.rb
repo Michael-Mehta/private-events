@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     end
 
     def create
-    @event = current_user.events.build(event_params)
+    @event = current_user.created_events.build(event_params)
 
     respond_to do |format|
 
@@ -33,6 +33,14 @@ class EventsController < ApplicationController
     def show
         @event = Event.find(params[:id])
     end
+
+    private
+
+    def event_params
+
+        params.require(:event).permit(:name, :event_date, :location)
+    end
+
 
     
 end
